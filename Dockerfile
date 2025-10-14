@@ -10,7 +10,7 @@ WORKDIR /usr/local/tomcat
 
 # Copiamo il file .war che abbiamo creato nella Fase 1
 # dentro la cartella 'webapps' del server Tomcat.
-COPY --from=build /app/target/webappdiagnale.war ./webapps/
+COPY --from=build /app/target/webappdiagonale.war ./webapps/
 
 # --- QUESTA È LA RIGA CORRETTA ---
 # Modifichiamo il file di configurazione di Tomcat (server.xml) per
