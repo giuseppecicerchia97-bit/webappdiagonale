@@ -30,7 +30,7 @@
                 <input type="number" id="l2" name="l2" step="any" required>
             </div>
             <div class="form-group">
-                <label for="diametroIniziale">Diametro Iniziale (mm):</label>
+                <label for="diametroIniziale">Diametro (mm):</label>
                 <input type="number" id="diametroIniziale" name="diametroIniziale" step="any" required>
             </div>
             <button type="submit">Calcola</button>
