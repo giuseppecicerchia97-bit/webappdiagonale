@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>CalcoloServlet</servlet-name>
-        <servlet-class>com.tuodominio.webappdiagonale.CalcoloServlet</servlet-class>
+        <servlet-class>com.diagonale.webappdiagonale.CalcoloServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
