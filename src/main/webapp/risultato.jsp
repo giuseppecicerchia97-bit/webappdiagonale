@@ -4,75 +4,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risultati Calcolo</title>
+    <title>Risultato del Calcolo</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
-        .container { background-color: white; padding: 30px 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 600px; }
-        h1 { text-align: center; color: #1c1e21; margin-bottom: 25px; }
-        .section { margin-bottom: 30px; }
-        h2 { font-size: 1.2em; color: #1877f2; border-bottom: 2px solid #e7f3ff; padding-bottom: 8px; margin-bottom: 15px; }
-        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
-        .result-item { background-color: #f0f2f5; padding: 15px; border-radius: 8px; }
-        .result-label { font-size: 0.9em; color: #606770; display: block; margin-bottom: 5px; }
-        .result-value { font-size: 1.5em; font-weight: bold; color: #1c1e21; }
-        .highlight .result-value { color: #1877f2; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #dddfe2; }
-        th { background-color: #f0f2f5; font-weight: 600; }
-        .back-link { display: block; text-align: center; margin-top: 30px; text-decoration: none; color: #1877f2; font-weight: bold; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            color: #1a253c;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+        .result-section {
+            background-color: #f0f2f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .result-section h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #0056b3;
+            font-size: 1.4rem;
+        }
+        .result-section .calculation {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .result-section .final-value {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #1a253c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+        td strong {
+            color: #333;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Risultati del Calcolo</h1>
+        <h1>Risultati Calcolo</h1>
 
-        <div class="section">
-            <h2>Risultati Principali</h2>
-            <div class="result-grid">
-                <div class="result-item highlight">
-                    <span class="result-label">Diagonale Principale (mm)</span>
-                    <span class="result-value">${diagonalePrincipale}</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">L1 Modificato (mm)</span>
-                    <span class="result-value">${l1Modificato}</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">L2 Modificato (mm)</span>
-                    <span class="result-value">${l2Modificato}</span>
-                </div>
-            </div>
+        <div class="result-section">
+            <h2>Diagonale Attrezzaggio</h2>
+            <div class="final-value">${diagonalePrincipale} mm</div>
         </div>
-        
-        <div class="section">
-            <h2>Dati di Riferimento Macchina</h2>
-             <table>
-                <thead>
-                    <tr>
-                        <th>Descrizione</th>
-                        <th>Valore</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Diametro Iniziale (Input)</td>
-                        <td>${diametro_input} mm</td>
-                    </tr>
-                     <tr>
-                        <td>Secondo Diametro (F5)</td>
-                        <td>${diametroSecondo} mm</td>
-                    </tr>
-                    <tr>
-                        <td>Diagonale Riferimento 1 (I8)</td>
-                        <td>${diagRif1} mm</td>
-                    </tr>
-                    <tr>
-                        <td>Diagonale Riferimento 2 (K8)</td>
-                        <td>${diagRif2} mm</td>
-                    </tr>
-                </tbody>
+
+        <div class="result-section">
+            <h2>L1 Modificato</h2>
+            <div class="calculation">${l1_input} - (2 * (25 + ${diametro_input}))</div>
+            <div class="final-value">${l1Modificato} mm</div>
+        </div>
+
+        <div class="result-section">
+            <h2>L2 Modificato</h2>
+            <div class="calculation">${l2_input} - (2 * (25 + ${diametro_input}))</div>
+            <div class="final-value">${l2Modificato} mm</div>
+        </div>
+
+        <h2>Dati di Riferimento</h2>
+        <table>
+            <tr>
+                <td><strong>Staffa</strong></td>
+                <td>${l1_input} x ${l2_input} mm</td>
+            </tr>
+            <tr>
+                <td><strong>Diametro</strong></td>
+                <td>${diametro_input} mm</td>
+            </tr>
+            <tr>
+                <td><strong>Secondo Diametro</strong></td>
+                <td>
+                    <span style="font-size: 0.9rem; color: #666;">(${diametro_input} + 25) =</span>
+                    <strong style="font-size: 1.1rem;">${diametroSecondo} mm</strong>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Diagonale di Riferimento 1</strong></td>
+                <td>${diagRif1} mm</td>
+            </tr>
             </table>
-        </div>
 
         <a href="index.jsp" class="back-link">Esegui un altro calcolo</a>
     </div>
