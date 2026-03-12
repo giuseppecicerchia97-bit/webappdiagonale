@@ -28,13 +28,6 @@
     <div class="container">
         <h1>Risultati Calcolo</h1>
 
-        <div class="result-section weight-section">
-            <h2>Peso Staffa</h2>
-            <div class="calculation">Perimetro: ((${l1_input} + ${l2_input}) * 2) = ${perimetroMm} mm</div>
-            <div class="calculation">Calcolo: (${perimetroMm} / 1000) m * ${pesoLineare} kg/m</div>
-            <div class="final-value">${pesoStaffa} Kg</div>
-        </div>
-
         <div class="result-section">
             <h2>Diagonale Attrezzaggio</h2>
             <div class="final-value">${diagonalePrincipale} mm</div>
@@ -44,6 +37,13 @@
             <h2>Metà Diagonale</h2>
             <div class="calculation">${diagonalePrincipale} / 2</div>
             <div class="final-value">${metaDiagonale} mm</div>
+        </div>
+
+        <div class="result-section weight-section">
+            <h2>Peso Staffa</h2>
+            <div class="calculation">Perimetro: ((${l1_input} + ${l2_input}) * 2) = ${perimetroMm} mm</div>
+            <div class="calculation">Calcolo: (${perimetroMm} / 1000) m * ${pesoLineare} kg/m</div>
+            <div class="final-value">${pesoStaffa} Kg</div>
         </div>
 
         <h2>Dati di Riferimento</h2>
