@@ -19,30 +19,29 @@ public class CalcoloServlet extends HttpServlet {
         double l2 = Double.parseDouble(request.getParameter("l2"));
         double diametroIniziale = Double.parseDouble(request.getParameter("diametroIniziale"));
 
-        // --- 2. ESECUZIONE DEI CALCOLI (AGGIORNATI SECONDO L'EXCEL) ---
-        // Il valore "R" è fisso a 25 nel file Excel.
-        double raggio = 25.0;
-
-        // L1 Modificato (L1 equivalente)
+        // --- 2. ESECUZIONE DEI CALCOLI GEOMETRICI (DIAGONALE) ---
+        double raggio = 25.0; // Fisso da Excel
         double l1Modificato = l1 - (2 * (raggio + diametroIniziale));
-
-        // L2 Modificato (L2 equivalente)
         double l2Modificato = l2 - (2 * (raggio + diametroIniziale));
-        
-        // Risultante (Teorema di Pitagora applicato a L1 eq. e L2 eq.)
         double risultante = Math.sqrt(Math.pow(l1Modificato, 2) + Math.pow(l2Modificato, 2));
-
-        // Diagonale Principale (Risultante - 2*R)
         double diagonalePrincipale = risultante - (2 * raggio);
-        
-        // Metà Diagonale
         double metaDiagonale = diagonalePrincipale / 2.0;
 
-        // --- 3. FORMATTAZIONE DEI RISULTATI ---
+        // --- 3. RICERCA PESO E CALCOLO PESO STAFFA ---
+        // Recupero il peso al metro in base al diametro inserito
+        double pesoLineare = getPesoPerDiametro(diametroIniziale);
+        
+        // Calcolo del perimetro in millimetri: (L1 + L2) * 2
+        double perimetroMm = (l1 + l2) * 2;
+        
+        // Calcolo il peso della staffa: (perimetro in metri) * (peso al metro)
+        double pesoStaffa = (perimetroMm / 1000.0) * pesoLineare;
+
+        // --- 4. FORMATTAZIONE DEI RISULTATI ---
         DecimalFormat df2 = new DecimalFormat("#.##"); 
         DecimalFormat df4 = new DecimalFormat("#.####"); 
 
-        // --- 4. SALVATAGGIO DEI RISULTATI NELLA RICHIESTA ---
+        // --- 5. SALVATAGGIO DEI RISULTATI NELLA RICHIESTA ---
         request.setAttribute("l1_input", l1);
         request.setAttribute("l2_input", l2);
         request.setAttribute("diametro_input", diametroIniziale);
@@ -53,8 +52,55 @@ public class CalcoloServlet extends HttpServlet {
         request.setAttribute("risultante", df4.format(risultante));
         request.setAttribute("diagonalePrincipale", df4.format(diagonalePrincipale));
         request.setAttribute("metaDiagonale", df4.format(metaDiagonale));
+        
+        // Attributi per il peso della staffa
+        request.setAttribute("pesoLineare", df2.format(pesoLineare));
+        request.setAttribute("perimetroMm", df2.format(perimetroMm));
+        request.setAttribute("pesoStaffa", df2.format(pesoStaffa)); // Arrotondato a 2 decimali per i Kg
 
-        // --- 5. INVIO ALLA PAGINA JSP PER LA VISUALIZZAZIONE ---
+        // --- 6. INVIO ALLA PAGINA JSP ---
         request.getRequestDispatcher("risultato.jsp").forward(request, response);
+    }
+
+    // --- METODO DI SUPPORTO: TABELLA DEI PESI ---
+    private double getPesoPerDiametro(double diametro) {
+        int d = (int) Math.round(diametro); 
+        switch (d) {
+            case 10: return 0.16;
+            case 11: return 0.19;
+            case 12: return 0.23;
+            case 13: return 0.27;
+            case 14: return 0.31;
+            case 15: return 0.35;
+            case 16: return 0.40;
+            case 17: return 0.45;
+            case 18: return 0.51;
+            case 19: return 0.57;
+            case 20: return 0.63;
+            case 21: return 0.69;
+            case 22: return 0.76;
+            case 23: return 0.83;
+            case 24: return 0.90;
+            case 25: return 0.98;
+            case 26: return 1.06;
+            case 27: return 1.14;
+            case 28: return 1.23;
+            case 29: return 1.32;
+            case 30: return 1.41;
+            case 31: return 1.51;
+            case 32: return 1.61;
+            case 33: return 1.71;
+            case 34: return 1.81;
+            case 35: return 1.92;
+            case 36: return 2.03;
+            case 37: return 2.15;
+            case 38: return 2.27;
+            case 39: return 2.39;
+            case 40: return 2.51;
+            case 45: return 3.18;
+            case 46: return 3.32;
+            case 50: return 3.93;
+            default: return 0.0;
+        }
     }
 }
