@@ -97,6 +97,12 @@
         </div>
 
         <div class="result-section">
+            <h2>Metà Diagonale</h2>
+            <div class="calculation">${diagonalePrincipale} / 2</div>
+            <div class="final-value">${metaDiagonale} mm</div>
+        </div>
+
+        <div class="result-section">
             <h2>L1 Modificato</h2>
             <div class="calculation">${l1_input} - (2 * (25 + ${diametro_input}))</div>
             <div class="final-value">${l1Modificato} mm</div>
@@ -111,7 +117,7 @@
         <h2>Dati di Riferimento</h2>
         <table>
             <tr>
-                <td><strong>Staffa</strong></td>
+                <td><strong>Staffa (L1 x L2)</strong></td>
                 <td>${l1_input} x ${l2_input} mm</td>
             </tr>
             <tr>
@@ -119,17 +125,14 @@
                 <td>${diametro_input} mm</td>
             </tr>
             <tr>
-                <td><strong>Secondo Diametro</strong></td>
-                <td>
-                    <span style="font-size: 0.9rem; color: #666;">(${diametro_input} + 25) =</span>
-                    <strong style="font-size: 1.1rem;">${diametroSecondo} mm</strong>
-                </td>
+                <td><strong>Raggio (Fisso)</strong></td>
+                <td>${raggio_input} mm</td>
             </tr>
             <tr>
-                <td><strong>Diagonale di Riferimento 1</strong></td>
-                <td>${diagRif1} mm</td>
+                <td><strong>Risultante (Pitagora)</strong></td>
+                <td>${risultante} mm</td>
             </tr>
-            </table>
+        </table>
 
         <a href="index.jsp" class="back-link">Esegui un altro calcolo</a>
     </div>
