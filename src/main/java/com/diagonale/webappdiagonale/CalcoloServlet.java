@@ -27,21 +27,21 @@ public class CalcoloServlet extends HttpServlet {
         double diagonalePrincipale = risultante - (2 * raggio);
         double metaDiagonale = diagonalePrincipale / 2.0;
 
-        // --- 3. RICERCA PESO E CALCOLO PESO STAFFA ---
-        // Recupero il peso al metro in base al diametro inserito
+        // --- 3. NUOVI CALCOLI: L1 e L2 PER ATTREZZAGGIO ---
+        double fissoAttrezzaggio = 10.0;
+        double l1PerAttrezzaggio = l1 - (2 * diametroIniziale) - fissoAttrezzaggio;
+        double l2PerAttrezzaggio = l2 - (2 * diametroIniziale) - fissoAttrezzaggio;
+
+        // --- 4. RICERCA PESO E CALCOLO PESO STAFFA ---
         double pesoLineare = getPesoPerDiametro(diametroIniziale);
-        
-        // Calcolo del perimetro in millimetri: (L1 + L2) * 2
         double perimetroMm = (l1 + l2) * 2;
-        
-        // Calcolo il peso della staffa: (perimetro in metri) * (peso al metro)
         double pesoStaffa = (perimetroMm / 1000.0) * pesoLineare;
 
-        // --- 4. FORMATTAZIONE DEI RISULTATI ---
+        // --- 5. FORMATTAZIONE DEI RISULTATI ---
         DecimalFormat df2 = new DecimalFormat("#.##"); 
         DecimalFormat df4 = new DecimalFormat("#.####"); 
 
-        // --- 5. SALVATAGGIO DEI RISULTATI NELLA RICHIESTA ---
+        // --- 6. SALVATAGGIO DEI RISULTATI NELLA RICHIESTA ---
         request.setAttribute("l1_input", l1);
         request.setAttribute("l2_input", l2);
         request.setAttribute("diametro_input", diametroIniziale);
@@ -53,12 +53,16 @@ public class CalcoloServlet extends HttpServlet {
         request.setAttribute("diagonalePrincipale", df4.format(diagonalePrincipale));
         request.setAttribute("metaDiagonale", df4.format(metaDiagonale));
         
+        // Attributi per L1 e L2 Attrezzaggio
+        request.setAttribute("l1PerAttrezzaggio", df2.format(l1PerAttrezzaggio));
+        request.setAttribute("l2PerAttrezzaggio", df2.format(l2PerAttrezzaggio));
+        
         // Attributi per il peso della staffa
         request.setAttribute("pesoLineare", df2.format(pesoLineare));
         request.setAttribute("perimetroMm", df2.format(perimetroMm));
-        request.setAttribute("pesoStaffa", df2.format(pesoStaffa)); // Arrotondato a 2 decimali per i Kg
+        request.setAttribute("pesoStaffa", df2.format(pesoStaffa));
 
-        // --- 6. INVIO ALLA PAGINA JSP ---
+        // --- 7. INVIO ALLA PAGINA JSP ---
         request.getRequestDispatcher("risultato.jsp").forward(request, response);
     }
 

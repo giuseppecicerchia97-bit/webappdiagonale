@@ -15,10 +15,17 @@
         input[type="number"]:focus { border-color: #1877f2; outline: none; box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2); }
         button { width: 100%; padding: 12px; background-color: #1877f2; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
         button:hover { background-color: #166fe5; }
+        .logo {
+            max-width: 250px; /* Puoi aumentare o diminuire questo valore per cambiare la grandezza */
+            height: auto;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="img/faritalia.png" alt="Logo Faritalia" class="logo">
         <h1>Calcolatore Diagonale</h1>
         <form action="calcolo" method="post">
             <div class="form-group">

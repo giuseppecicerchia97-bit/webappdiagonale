@@ -12,7 +12,7 @@
         .result-section { background-color: #f0f2f5; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: center; }
         .result-section h2 { margin-top: 0; margin-bottom: 10px; color: #0056b3; font-size: 1.4rem; }
         .result-section .calculation { font-size: 0.9rem; color: #666; margin-bottom: 5px; font-family: 'Courier New', Courier, monospace; }
-        .result-section .final-value { font-size: 2.2rem; font-weight: bold; color: #1a253c; }
+        .result-section .final-value { font-size: 2.2rem; font-weight: bold; color: #1a253c; margin-bottom: 10px; }
         .weight-section { background-color: #fff3cd; border: 1px solid #ffeeba; }
         .weight-section h2 { color: #856404; }
         .weight-section .final-value { color: #856404; }
@@ -22,10 +22,13 @@
         td strong { color: #333; }
         .back-link { display: block; text-align: center; margin-top: 30px; text-decoration: none; color: #007bff; font-weight: 500; }
         .back-link:hover { text-decoration: underline; }
+        .logo { max-width: 250px; height: auto; display: block; margin: 0 auto 20px auto; }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="img/faritalia.png" alt="Logo Faritalia" class="logo">
+
         <h1>Risultati Calcolo</h1>
 
         <div class="result-section">
@@ -37,6 +40,18 @@
             <h2>Metà Diagonale</h2>
             <div class="calculation">${diagonalePrincipale} / 2</div>
             <div class="final-value">${metaDiagonale} mm</div>
+        </div>
+
+        <div class="result-section">
+            <h2>Dimensioni per Attrezzaggio</h2>
+            
+            <div class="calculation">L1: ${l1_input} - (2 * ${diametro_input}) - 10</div>
+            <div class="final-value" style="font-size: 1.8rem;">L1: ${l1PerAttrezzaggio} mm</div>
+            
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+            
+            <div class="calculation">L2: ${l2_input} - (2 * ${diametro_input}) - 10</div>
+            <div class="final-value" style="font-size: 1.8rem; margin-bottom: 0;">L2: ${l2PerAttrezzaggio} mm</div>
         </div>
 
         <div class="result-section weight-section">
@@ -61,11 +76,11 @@
                 <td>${pesoLineare} kg/m</td>
             </tr>
             <tr>
-                <td><strong>L1 Modificato</strong></td>
+                <td><strong>L1 Modificato (Orig.)</strong></td>
                 <td>${l1Modificato} mm</td>
             </tr>
             <tr>
-                <td><strong>L2 Modificato</strong></td>
+                <td><strong>L2 Modificato (Orig.)</strong></td>
                 <td>${l2Modificato} mm</td>
             </tr>
         </table>
