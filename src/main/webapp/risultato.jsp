@@ -3,88 +3,56 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risultato del Calcolo</title>
+    <title>Risultati - Faritalia</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f7f9; color: #333; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
-        .container { background-color: #ffffff; padding: 30px 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); width: 100%; max-width: 600px; }
-        h1 { color: #1a253c; text-align: center; margin-bottom: 25px; font-size: 2rem; }
-        .result-section { background-color: #f0f2f5; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: center; }
-        .result-section h2 { margin-top: 0; margin-bottom: 10px; color: #0056b3; font-size: 1.4rem; }
-        .result-section .calculation { font-size: 0.9rem; color: #666; margin-bottom: 5px; font-family: 'Courier New', Courier, monospace; }
-        .result-section .final-value { font-size: 2.2rem; font-weight: bold; color: #1a253c; margin-bottom: 10px; }
-        .weight-section { background-color: #fff3cd; border: 1px solid #ffeeba; }
-        .weight-section h2 { color: #856404; }
-        .weight-section .final-value { color: #856404; }
-        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background-color: #f2f2f2; font-weight: 600; }
-        td strong { color: #333; }
-        .back-link { display: block; text-align: center; margin-top: 30px; text-decoration: none; color: #007bff; font-weight: 500; }
-        .back-link:hover { text-decoration: underline; }
-        .logo { max-width: 250px; height: auto; display: block; margin: 0 auto 20px auto; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f4f7f9; display: flex; justify-content: center; padding: 20px; min-height: 100vh; align-items: center; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        .logo { max-width: 180px; display: block; margin: 0 auto 20px; }
+        h1 { text-align: center; color: #1a253c; font-size: 1.8rem; margin-bottom: 25px; }
+        .box { background: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center; }
+        .box h2 { margin: 0 0 10px; font-size: 1.1rem; color: #0056b3; }
+        .val { font-size: 1.8rem; font-weight: bold; color: #1a253c; }
+        .weight { background: #fff3cd; border-color: #ffeeba; }
+        .weight h2, .weight .val { color: #856404; }
+        .attr { background: #e2f3f5; border-color: #bee5eb; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; font-size: 0.9rem; }
+        td { padding: 8px; border-bottom: 1px solid #eee; }
+        .back-link { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #007bff; font-weight: bold; }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="img/faritalia.png" alt="Logo Faritalia" class="logo">
-
+        <img src="img/faritalia.png" alt="Logo" class="logo">
         <h1>Risultati Calcolo</h1>
-
-        <div class="result-section">
+        
+        <div class="box">
             <h2>Diagonale Attrezzaggio</h2>
-            <div class="final-value">${diagonalePrincipale} mm</div>
+            <div class="val">${diag} mm</div>
         </div>
 
-        <div class="result-section">
+        <div class="box">
             <h2>Metà Diagonale</h2>
-            <div class="calculation">${diagonalePrincipale} / 2</div>
-            <div class="final-value">${metaDiagonale} mm</div>
+            <div class="val">${meta} mm</div>
         </div>
 
-        <div class="result-section">
-            <h2>Dimensioni per Attrezzaggio</h2>
-            
-            <div class="calculation">L1: ${l1_input} - (2 * ${diametro_input}) - 10</div>
-            <div class="final-value" style="font-size: 1.8rem;">L1: ${l1PerAttrezzaggio} mm</div>
-            
-            <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
-            
-            <div class="calculation">L2: ${l2_input} - (2 * ${diametro_input}) - 10</div>
-            <div class="final-value" style="font-size: 1.8rem; margin-bottom: 0;">L2: ${l2PerAttrezzaggio} mm</div>
+        <div class="box attr">
+            <h2>Misure per Attrezzaggio</h2>
+            <div style="font-size: 1.4rem; font-weight: bold;">L1: ${l1Attr} mm</div>
+            <div style="font-size: 1.4rem; font-weight: bold;">L2: ${l2Attr} mm</div>
+            <small style="color: #666;">(Formula: L - 2*Øattr - 10)</small>
         </div>
 
-        <div class="result-section weight-section">
+        <div class="box weight">
             <h2>Peso Staffa</h2>
-            <div class="calculation">Perimetro: ((${l1_input} + ${l2_input}) * 2) = ${perimetroMm} mm</div>
-            <div class="calculation">Calcolo: (${perimetroMm} / 1000) m * ${pesoLineare} kg/m</div>
-            <div class="final-value">${pesoStaffa} Kg</div>
+            <div class="val">${peso} Kg</div>
+            <small>Basato su Ø commerciale ${dPeso} mm (${pesoLin} kg/m)</small>
         </div>
 
-        <h2>Dati di Riferimento</h2>
         <table>
-            <tr>
-                <td><strong>Staffa (L1 x L2)</strong></td>
-                <td>${l1_input} x ${l2_input} mm</td>
-            </tr>
-            <tr>
-                <td><strong>Diametro</strong></td>
-                <td>${diametro_input} mm</td>
-            </tr>
-            <tr>
-                <td><strong>Peso Specifico (da tabella)</strong></td>
-                <td>${pesoLineare} kg/m</td>
-            </tr>
-            <tr>
-                <td><strong>L1 Modificato (Orig.)</strong></td>
-                <td>${l1Modificato} mm</td>
-            </tr>
-            <tr>
-                <td><strong>L2 Modificato (Orig.)</strong></td>
-                <td>${l2Modificato} mm</td>
-            </tr>
+            <tr><td><strong>L1 / L2 Originali</strong></td><td>${l1_in} x ${l2_in} mm</td></tr>
+            <tr><td><strong>Ø Attrezzaggio usato</strong></td><td>${dAttr} mm</td></tr>
         </table>
-
+        
         <a href="index.jsp" class="back-link">Esegui un altro calcolo</a>
     </div>
 </body>
